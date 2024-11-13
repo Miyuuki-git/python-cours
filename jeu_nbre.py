@@ -3,7 +3,7 @@
 import random
 
 # Fonction énoncer le niveau de la difficulté
-def menu_difficulte():
+def difficulty():
     print('\nJeu du nombre')
     print('\n===== CHOIX DE LA DIFFICULTÉ =====')
     print('1. Facile (0 à 10)')
@@ -17,8 +17,8 @@ def play(min, max):
     secret_number = random.randint(min, max)
     print(f"\nDevinez le nombre entre {min} et {max}")
 
-# Initialisation du compteur de coups   
-    coups = 0  
+# Initialisation du compteur de tentatives
+    attempts = 0  
 
 # Boucle : jusqu'à que le joueur trouve le nombre
     while True:
@@ -28,7 +28,7 @@ def play(min, max):
             print("Veuillez entrer un nombre valide.")
             continue
         # Incrémentation du compteur à chaque essai valide
-        coups += 1  
+        attempts += 1  
         essai = int(essai)
         if essai < secret_number:
             print("C'est plus !")
@@ -36,18 +36,15 @@ def play(min, max):
             print("C'est moins !")
         else:
             print(f"Bravo ! Vous avez trouvé le nombre {secret_number}.")
-            print(f"Vous avez réussi en {coups} coups.")
-            # Retourne le nombre de coups joués
-            return coups  
+            print(f"Vous avez réussi en {attempts} attempts.")
+            # Retourne le nombre de tentatives joués
+            return attempts  
             break
-def menu_principal():
-    total_coups = 0
-    parties_jouees = 0
 
 # Boucle principale du menu
 def menu_principal():
     while True:
-        menu_difficulte()
+        difficulty()
         choix = input("Choisissez votre niveau de difficulté (1-4) : ")
 
         if choix == '1':
@@ -61,7 +58,6 @@ def menu_principal():
             break
         else:
             print("Choix invalide. Veuillez réessayer.")
-
 
 # Lancer le menu
 if __name__ == "__main__":
